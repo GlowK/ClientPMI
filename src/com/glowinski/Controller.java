@@ -17,15 +17,17 @@ public class Controller {
     private PrintWriter output;
     private ObjectOutputStream outToServer;
     private ObjectInputStream inFromServer;
-    private List<Question> questionList;
+   // private List<Question> questionList;
+    private static final int NUMBER_OF_QUESTIONS = 10;
+    private int questionNumber = 1;
 
-    public List<Question> getQuestionList() {
-        return questionList;
-    }
+    //public List<Question> getQuestionList() {
+    //    return questionList;
+    //}
 
-    public void setQuestionList(List<Question> questionList) {
-        this.questionList = questionList;
-    }
+    //public void setQuestionList(List<Question> questionList) {
+    //    this.questionList = questionList;
+    //
 
 
 
@@ -48,6 +50,12 @@ public class Controller {
     @FXML
     private Button getQuestion;
 
+    @FXML
+    private Button getNextQuestion;
+
+    @FXML
+    private Button endTest;
+
 
 
     @FXML
@@ -59,6 +67,9 @@ public class Controller {
             output = new PrintWriter(socket.getOutputStream(), true);
             outToServer = new ObjectOutputStream(socket.getOutputStream());
             inFromServer = new ObjectInputStream(socket.getInputStream());
+
+            getNextQuestion.setVisible(false);
+            endTest.setVisible(false);
 
             Service service = new Service(this, input, inFromServer);
             service.start();
@@ -75,22 +86,32 @@ public class Controller {
 
 
     @FXML
-    public void onSendMessageButtonClick() {
-        if(!messageTextField.getText().isBlank())
-            sendMessageToServer();
+    public void onGetNextQuestionButtonClick() {
+        //if(!messageTextField.getText().isBlank())
+        //    sendMessageToServer();
+        if(questionNumber < NUMBER_OF_QUESTIONS){
+            sendMessageToServer("question++");
+            questionNumber++;
+            System.out.println(questionNumber);
+        }else{
+            getNextQuestion.setVisible(false);
+            endTest.setVisible(true);
 
-        messageTextField.clear();
+        }
+
+        //messageTextField.clear();
     }
 
     @FXML
     public void getQuestionClicked(){
         sendMessageToServer("question++");
         getQuestion.setVisible(false);
+        getNextQuestion.setVisible(true);
     }
 
 
     @FXML
-    public void onClearChatButtonClick() {
+    public void onEndTestButtonClick() {
         clearfields();
 
     }

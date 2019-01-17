@@ -31,8 +31,10 @@ public class Service extends Thread {
                     Question pytanko = (Question)inputObject.readObject();
                     System.out.println(pytanko.toString());
                     controller.addToQuestionsList(pytanko);
-                }catch (Exception e){
-                    System.out.println(e);
+                }catch (NullPointerException e){
+                    System.out.println("");
+                } catch (ClassNotFoundException | IOException ee){
+                    System.out.println("Service error" + ee);
                 }
 
             }

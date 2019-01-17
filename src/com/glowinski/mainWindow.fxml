@@ -51,9 +51,9 @@
       </children>
    </HBox>
     <HBox>
-        <TextField fx:id="messageTextField" HBox.hgrow="ALWAYS" />
-        <Button fx:id="sendMessageButton" defaultButton="true" onAction="#onSendMessageButtonClick" text="Next Question" />
-        <Button fx:id="clearChatButton" cancelButton="true" onAction="#onClearChatButtonClick" text="Clear" />
-      <Button fx:id="getQuestion" mnemonicParsing="false" onAction="#getQuestionClicked" text="Start" />
+        <Button fx:id="getNextQuestion" defaultButton="true" minWidth="150.0" onAction="#onGetNextQuestionButtonClick" text="Next Question" />
+        <Button fx:id="endTest" cancelButton="true" minWidth="150.0" onAction="#onEndTestButtonClick" text="Clear" />
+      <Button fx:id="getQuestion" minWidth="150.0" mnemonicParsing="false" onAction="#getQuestionClicked" text="Start" />
     </HBox>
+     <TextField fx:id="messageTextField" />
 </VBox>
