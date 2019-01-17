@@ -19,8 +19,8 @@ public class Client extends Application {
         loader.setController(controller);
         Parent root = loader.load();
 
-        primaryStage.setTitle("Happy Name");
-        primaryStage.setScene(new Scene(root, 600, 450));
+        primaryStage.setTitle("PMI Test");
+        primaryStage.setScene(new Scene(root, 450, 700));
 
         controller.focusOnMessageTextField();
 

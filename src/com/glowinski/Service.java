@@ -22,22 +22,23 @@ public class Service extends Thread {
     @Override
     public void run() {
         //W nieskonczonej petli sluchaj nadawanych wiadomości przez serwer i drukuj je w polu tektowych chatu.
-        try {
+        //try {
             //TODO: Check if there's a better way of handling infinite loop
             while(true) {
-                String message = input.readLine();
-                controller.printToTextArea(message);
+                //String message = input.readLine();
+                //controller.printToTextArea(message);
                 try {
                     Question pytanko = (Question)inputObject.readObject();
                     System.out.println(pytanko.toString());
+                    controller.addToQuestionsList(pytanko);
                 }catch (Exception e){
                     System.out.println(e);
                 }
 
             }
-        }
-        catch(IOException error) {
-            controller.printToTextArea("Client error: " + error.getMessage());
-        }
+      //  }
+        //catch(IOException error) {
+           // controller.printToTextArea("Client error: " + error.getMessage());
+        //}
     }
 }
