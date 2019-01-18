@@ -28,11 +28,15 @@ public class Service extends Thread {
                 //String message = input.readLine();
                 //controller.printToTextArea(message);
                 try {
-                    Question pytanko = (Question)inputObject.readObject();
-                    System.out.println(pytanko.toString());
-                    controller.addToQuestionsList(pytanko);
+                    Object obj;
+                    obj = (Object)inputObject.readObject();
+                    if(obj instanceof Question) {
+                        Question pytanko = (Question)obj;
+                        System.out.println(pytanko.toString());
+                        controller.addToQuestionsList(pytanko);
+                    }
                 }catch (NullPointerException e){
-                    System.out.println("");
+                    System.out.println("NullPointer coz Question = null");
                 } catch (ClassNotFoundException | IOException ee){
                     System.out.println("Service error" + ee);
                 }

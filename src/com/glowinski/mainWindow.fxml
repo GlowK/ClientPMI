@@ -19,41 +19,42 @@
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
          <TextArea id="A1" fx:id="answer1TextArea" editable="false" maxHeight="100.0" prefHeight="100.0" prefWidth="350.0" wrapText="true" />
-         <CheckBox mnemonicParsing="false" text="CheckBox" translateX="10.0" translateY="40.0" />
+         <CheckBox fx:id="cbA1" mnemonicParsing="false" text="Answer 1" translateX="10.0" translateY="40.0" />
       </children>
    </HBox>
    <Label text="Answer 2" />
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
          <TextArea id="A2" fx:id="answer2TextArea" editable="false" prefHeight="100.0" prefWidth="350.0" wrapText="true" />
-         <CheckBox mnemonicParsing="false" text="CheckBox" translateX="10.0" translateY="40.0" />
+         <CheckBox fx:id="cbA2" mnemonicParsing="false" text="Answer 2" translateX="10.0" translateY="40.0" />
       </children>
    </HBox>
    <Label text="Answer 3" />
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
          <TextArea id="A3" fx:id="answer3TextArea" editable="false" prefHeight="100.0" prefWidth="350.0" wrapText="true" />
-         <CheckBox mnemonicParsing="false" text="CheckBox" translateX="10.0" translateY="40.0" />
+         <CheckBox fx:id="cbA3" mnemonicParsing="false" text="Answer 3" translateX="10.0" translateY="40.0" />
       </children>
    </HBox>
    <Label text="Answer 4" />
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
          <TextArea id="A4" fx:id="answer4TextArea" editable="false" prefHeight="100.0" prefWidth="350.0" wrapText="true" />
-         <CheckBox mnemonicParsing="false" text="CheckBox" translateX="10.0" translateY="40.0" />
+         <CheckBox fx:id="cbA4" mnemonicParsing="false" text="Answer 4" translateX="10.0" translateY="40.0" />
       </children>
    </HBox>
    <Label layoutX="211.0" layoutY="438.0" text="Answer 5" />
    <HBox layoutX="10.0" layoutY="515.0" prefHeight="100.0" prefWidth="200.0">
       <children>
          <TextArea id="A4" fx:id="answer5TextArea" editable="false" prefHeight="100.0" prefWidth="350.0" wrapText="true" />
-         <CheckBox mnemonicParsing="false" text="CheckBox" translateX="10.0" translateY="40.0" />
+         <CheckBox fx:id="cbA5" mnemonicParsing="false" text="Answer 5" translateX="10.0" translateY="40.0" />
       </children>
    </HBox>
     <HBox>
         <Button fx:id="getNextQuestion" defaultButton="true" minWidth="150.0" onAction="#onGetNextQuestionButtonClick" text="Next Question" />
-        <Button fx:id="endTest" cancelButton="true" minWidth="150.0" onAction="#onEndTestButtonClick" text="Clear" />
-      <Button fx:id="getQuestion" minWidth="150.0" mnemonicParsing="false" onAction="#getQuestionClicked" text="Start" />
+        <Button fx:id="endTest" defaultButton="true" minWidth="150.0" onAction="#onEndTestButtonClick" text="Clear" />
+      <Button fx:id="getQuestion" defaultButton="true" minWidth="150.0" mnemonicParsing="false" onAction="#getQuestionClicked" text="Start" />
     </HBox>
+   <TextArea fx:id="messageTextField2" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="450.0" />
      <TextField fx:id="messageTextField" />
 </VBox>
