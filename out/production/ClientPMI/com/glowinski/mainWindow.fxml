@@ -4,7 +4,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -52,9 +51,8 @@
    </HBox>
     <HBox>
         <Button fx:id="getNextQuestion" defaultButton="true" minWidth="150.0" onAction="#onGetNextQuestionButtonClick" text="Next Question" />
-        <Button fx:id="endTest" defaultButton="true" minWidth="150.0" onAction="#onEndTestButtonClick" text="Clear" />
+        <Button fx:id="endTest" defaultButton="true" minWidth="150.0" onAction="#onEndTestButtonClick" text="Check Results" />
       <Button fx:id="getQuestion" defaultButton="true" minWidth="150.0" mnemonicParsing="false" onAction="#getQuestionClicked" text="Start" />
     </HBox>
    <TextArea fx:id="messageTextField2" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="450.0" />
-     <TextField fx:id="messageTextField" />
 </VBox>

@@ -4,37 +4,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 
-//Klasa obsługująca GUI
 public class Controller {
 
     private Socket socket;
-    //private BufferedReader input;
-    //private PrintWriter output;
+
     private ObjectOutputStream outToServer;
     private ObjectInputStream inFromServer;
     private ArrayList<Answer> answerArrayList = new ArrayList<>();
     private static final int NUMBER_OF_QUESTIONS = 10;
     private int questionNumber = 1;
-
-    //public List<Question> getQuestionList() {
-    //    return questionList;
-    //}
-
-    //public void setQuestionList(List<Question> questionList) {
-    //    this.questionList = questionList;
-    //
-
-
-
-    @FXML
-    private TextField messageTextField;
 
     @FXML
     private TextArea questionTextArea;
@@ -74,12 +57,11 @@ public class Controller {
         try {
             System.out.println("Connecting to " + "localhost" + " on port " + 1099 + "...");
             socket = new Socket("localhost", 1099);
-            //input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            //output = new PrintWriter(socket.getOutputStream(), true);
             outToServer = new ObjectOutputStream(socket.getOutputStream());
             inFromServer = new ObjectInputStream(socket.getInputStream());
 
             setStartingVisibility();
+            messageTextField2.appendText("Welcome to PMI test. Click Start to begin.");
 
             Service service = new Service(this, outToServer, inFromServer);
             service.start();
@@ -90,29 +72,21 @@ public class Controller {
     }
 
     @FXML
-    void focusOnMessageTextField() {
-        messageTextField.requestFocus();
-    }
-
-
-    @FXML
     public void onGetNextQuestionButtonClick() {
-        //if(!messageTextField.getText().isBlank())
-        //    sendMessageToServer();
         answerArrayList.add(checkAnswers());
         if(questionNumber < NUMBER_OF_QUESTIONS){
             Message mes = new Message("question++");
             sendMessageToServer(mes);
-            //sendMessageToServer("question++");
             questionNumber++;
-            System.out.println(questionNumber);
+            //System.out.println(questionNumber);
+            if(questionNumber == NUMBER_OF_QUESTIONS){
+                getNextQuestion.textProperty().set("Finish test");
+            }
         }else{
             getNextQuestion.setVisible(false);
             endTest.setVisible(true);
 
         }
-
-        //messageTextField.clear();
     }
 
     @FXML
@@ -122,12 +96,14 @@ public class Controller {
         sendMessageToServer(mes);
         getQuestion.setVisible(false);
         getNextQuestion.setVisible(true);
+        messageTextField2.appendText("Question 1/" + NUMBER_OF_QUESTIONS + " presented.");
     }
 
 
     @FXML
     public void onEndTestButtonClick() {
         clearfields();
+        hideCBs();
         System.out.println("Drukuje przesylane odpowiedzi: ");
         for(Answer ans: answerArrayList){
             System.out.println(ans.toString());
@@ -149,11 +125,9 @@ public class Controller {
         answer3TextArea.clear();
         answer4TextArea.clear();
         answer5TextArea.clear();
+        messageTextField2.clear();
     }
 
-    //private void sendMessageToServer() {
-    //    output.println(messageTextField.getText());
-    //}
     private void sendMessageToServer(Message message){
         try {
             outToServer.writeObject(message);
@@ -183,6 +157,14 @@ public class Controller {
 
     }
 
+    private void hideCBs(){
+        cbA1.setVisible(false);
+        cbA2.setVisible(false);
+        cbA3.setVisible(false);
+        cbA4.setVisible(false);
+        cbA5.setVisible(false);
+    }
+
     private void setCBvisibilityPerQuestion(Question q){
         setCBVisibility(q.getAnswer1(), cbA1);
         setCBVisibility(q.getAnswer2(), cbA2);
@@ -191,8 +173,9 @@ public class Controller {
         setCBVisibility(q.getAnswer5(), cbA5);
     }
 
-    void addToQuestionsList(Question q){
+    void presentQuestionToUser(Question q){
         clearfields();
+        messageTextField2.appendText("Question: " + questionNumber +"/" + NUMBER_OF_QUESTIONS + " presented.");
         setCBvisibilityPerQuestion(q);
         questionTextArea.appendText(q.getQuestion());
         answer1TextArea.appendText(q.getAnswer1());
@@ -223,7 +206,8 @@ public class Controller {
         answer.setA4(cbA4.isSelected());
         answer.setA5(cbA5.isSelected());
         setCBtoFalse();
-        System.out.println(answer.toString());
+        System.out.println("Answer sent.");
+        //System.out.println(answer.toString());
         return answer;
     }
 
@@ -238,4 +222,5 @@ public class Controller {
     public Socket getSocket() {
         return socket;
     }
+
 }

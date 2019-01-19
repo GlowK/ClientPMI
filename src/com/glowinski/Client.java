@@ -14,15 +14,12 @@ public class Client extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("mainWindow.fxml"));
 
-
         Controller controller = new Controller();
         loader.setController(controller);
         Parent root = loader.load();
 
         primaryStage.setTitle("PMI Test");
         primaryStage.setScene(new Scene(root, 450, 700));
-
-        controller.focusOnMessageTextField();
 
         primaryStage.show();
     }
