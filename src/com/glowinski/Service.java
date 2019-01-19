@@ -21,27 +21,28 @@ public class Service extends Thread {
     public void run() {
         try {
             while (true) {
-                try {
-                    Object obj;
-                    obj = (Object) inputObject.readObject();
-                    if (obj instanceof Question){
-                        Question pytanko = (Question) obj;
-                        //System.out.println(pytanko.toString());
-                        System.out.println("Question received");
-                        controller.presentQuestionToUser(pytanko);
-                    }else if (obj instanceof  Message){
-                        Message mes = (Message)obj;
-                        System.out.println("Message received");
-                        controller.printToTextArea(mes.getMessage());
-                    }
-                } catch (NullPointerException e) {
-                    System.out.println("NullPointer coz Question = null");
-                } catch (ClassNotFoundException | IOException ee) {
-                    System.out.println("Service error" + ee);
+                Object obj;
+                obj = (Object) inputObject.readObject();
+                if (obj instanceof Question){
+                    Question pytanko = (Question) obj;
+                    //System.out.println(pytanko.toString());
+                    System.out.println("Question received");
+                    controller.presentQuestionToUser(pytanko);
+                }else if (obj instanceof  Message){
+                    Message mes = (Message)obj;
+                    System.out.println("Message received");
+                    controller.printToTextArea(mes.getMessage());
                 }
             }
+        }catch(Exception e){
+            e.printStackTrace();
         }finally {
             System.out.println("Wstawic zamykanie");
+            try{
+                controller.getSocket().close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }

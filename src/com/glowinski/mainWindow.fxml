@@ -55,4 +55,5 @@
       <Button fx:id="getQuestion" defaultButton="true" minWidth="150.0" mnemonicParsing="false" onAction="#getQuestionClicked" text="Start" />
     </HBox>
    <TextArea fx:id="messageTextField2" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="450.0" />
+   <Button fx:id="shutdownButton" defaultButton="true" minWidth="450.0" mnemonicParsing="false" onAction="#onShutdownButtonClicked" prefWidth="450.0" text="Close" />
 </VBox>

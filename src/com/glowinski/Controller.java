@@ -1,5 +1,6 @@
 package com.glowinski;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -40,6 +41,8 @@ public class Controller {
     private Button getNextQuestion;
     @FXML
     private Button endTest;
+    @FXML
+    private Button shutdownButton;
 
     @FXML
     private CheckBox cbA1;
@@ -116,6 +119,18 @@ public class Controller {
         }
         Message mes = new Message("check");
         sendMessageToServer(mes);
+        shutdownButton.setVisible(true);
+    }
+
+    @FXML
+    public void onShutdownButtonClicked(){
+        //try {
+        //    socket.close();
+        //}catch(Exception e){
+        //    e.printStackTrace();
+        //}
+        Platform.exit();
+        System.exit(0);
     }
 
     private  void clearfields(){
@@ -154,6 +169,7 @@ public class Controller {
         cbA3.setVisible(false);
         cbA4.setVisible(false);
         cbA5.setVisible(false);
+        shutdownButton.setVisible(false);
 
     }
 
