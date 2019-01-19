@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Upgrade">
-      <change beforePath="$PROJECT_DIR$/src/com/glowinski/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/glowinski/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/glowinski/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/glowinski/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/glowinski/mainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/glowinski/mainWindow.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,7 +74,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/glowinski/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="-15">
               <caret line="133" column="5" lean-forward="true" selection-start-line="133" selection-start-column="5" selection-end-line="134" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -90,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/glowinski/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+            <state relative-caret-position="342">
+              <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -203,8 +201,8 @@
         <option value="$PROJECT_DIR$/src/com/glowinski/Message.java" />
         <option value="$PROJECT_DIR$/src/com/glowinski/Client.java" />
         <option value="$PROJECT_DIR$/src/com/glowinski/mainWindow.fxml" />
-        <option value="$PROJECT_DIR$/src/com/glowinski/Service.java" />
         <option value="$PROJECT_DIR$/src/com/glowinski/Controller.java" />
+        <option value="$PROJECT_DIR$/src/com/glowinski/Service.java" />
       </list>
     </option>
   </component>
@@ -268,7 +266,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547925924929" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547926530243" />
     <property name="dynamic.classpath" value="false" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -386,6 +384,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="114" y="0" width="1447" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21413122" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -553,16 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/glowinski/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/glowinski/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -573,9 +562,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/glowinski/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/glowinski/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="-15">
           <caret line="133" column="5" lean-forward="true" selection-start-line="133" selection-start-column="5" selection-end-line="134" />
           <folding>
             <element signature="imports" expanded="true" />

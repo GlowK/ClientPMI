@@ -37,12 +37,14 @@ public class Service extends Thread {
         }catch(Exception e){
             e.printStackTrace();
         }finally {
-            System.out.println("Wstawic zamykanie");
-            try{
-                controller.getSocket().close();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+            System.out.println("Shutdown...");
+            //try{
+                //controller.getSocket().close();
+                controller.onShutdownButtonClicked();
+                // You cant throw exeptions if i kill you first :P
+            //}catch (Exception e){
+            //    e.printStackTrace();
+            //}
         }
     }
 }
