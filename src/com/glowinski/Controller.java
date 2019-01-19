@@ -8,17 +8,18 @@ import javafx.scene.control.TextField;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 //Klasa obsługująca GUI
 public class Controller {
 
     private Socket socket;
-    private BufferedReader input;
-    private PrintWriter output;
+    //private BufferedReader input;
+    //private PrintWriter output;
     private ObjectOutputStream outToServer;
     private ObjectInputStream inFromServer;
-   // private List<Question> questionList;
+    private ArrayList<Answer> answerArrayList = new ArrayList<>();
     private static final int NUMBER_OF_QUESTIONS = 10;
     private int questionNumber = 1;
 
@@ -73,14 +74,14 @@ public class Controller {
         try {
             System.out.println("Connecting to " + "localhost" + " on port " + 1099 + "...");
             socket = new Socket("localhost", 1099);
-            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            output = new PrintWriter(socket.getOutputStream(), true);
+            //input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            //output = new PrintWriter(socket.getOutputStream(), true);
             outToServer = new ObjectOutputStream(socket.getOutputStream());
             inFromServer = new ObjectInputStream(socket.getInputStream());
 
             setStartingVisibility();
 
-            Service service = new Service(this, input, inFromServer);
+            Service service = new Service(this, outToServer, inFromServer);
             service.start();
         }
         catch(IOException exception) {
@@ -98,9 +99,11 @@ public class Controller {
     public void onGetNextQuestionButtonClick() {
         //if(!messageTextField.getText().isBlank())
         //    sendMessageToServer();
-        checkAnswers();
+        answerArrayList.add(checkAnswers());
         if(questionNumber < NUMBER_OF_QUESTIONS){
-            sendMessageToServer("question++");
+            Message mes = new Message("question++");
+            sendMessageToServer(mes);
+            //sendMessageToServer("question++");
             questionNumber++;
             System.out.println(questionNumber);
         }else{
@@ -114,7 +117,9 @@ public class Controller {
 
     @FXML
     public void getQuestionClicked(){
-        sendMessageToServer("question++");
+        Message mes = new Message("question++");
+        //System.out.println(mes.getMessage());
+        sendMessageToServer(mes);
         getQuestion.setVisible(false);
         getNextQuestion.setVisible(true);
     }
@@ -123,7 +128,18 @@ public class Controller {
     @FXML
     public void onEndTestButtonClick() {
         clearfields();
-
+        System.out.println("Drukuje przesylane odpowiedzi: ");
+        for(Answer ans: answerArrayList){
+            System.out.println(ans.toString());
+            sendAnswerToServer(ans);
+            try {
+                Thread.sleep(100);
+            }catch(Exception e){
+                System.out.println(e);
+            }
+        }
+        Message mes = new Message("check");
+        sendMessageToServer(mes);
     }
 
     private  void clearfields(){
@@ -135,11 +151,25 @@ public class Controller {
         answer5TextArea.clear();
     }
 
-    private void sendMessageToServer() {
-        output.println(messageTextField.getText());
+    //private void sendMessageToServer() {
+    //    output.println(messageTextField.getText());
+    //}
+    private void sendMessageToServer(Message message){
+        try {
+            outToServer.writeObject(message);
+            outToServer.reset();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
-    private void sendMessageToServer(String message){
-            output.println(message);
+
+    private void sendAnswerToServer(Answer answer){
+        try {
+            outToServer.writeObject(answer);
+            outToServer.reset();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     private void setStartingVisibility(){
@@ -174,7 +204,7 @@ public class Controller {
     }
 
     void printToTextArea(String message) {
-        answer4TextArea.appendText(message + "\n");
+        messageTextField2.appendText(message + "\n");
     }
 
     private void setCBVisibility(String a, CheckBox cb){
@@ -205,4 +235,7 @@ public class Controller {
         cbA5.setSelected(false);
     }
 
+    public Socket getSocket() {
+        return socket;
+    }
 }
